@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+    駅すぱーとサンプル
+  </title>
+
+  <link class="css" rel="stylesheet" type="text/css" href="expCss/expGuiStation.css">
+  <script type="text/javascript" src="expGuiStation.js?key=HraqZa5yTKCtSyuR"></script>
+  <script type="text/javascript" src="expGuiCourseLight.js?key=HraqZa5yTKCtSyuR"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  <!--
+    $(document).ready(function(){
+      $("#search").on("click", function() {
+        ekispertSearch($("#station_from input").val(), $("#station_to input").val());
+      });
+    });
+
+  var resultApp;
+
+  /*
+  * 駅すぱーとWeb APIで駅名検索
+  */
+  function init(){
+    stationApp = new expGuiStation(document.getElementById("station_from"));
+    stationApp.dispStation();
+    stationApp = new expGuiStation(document.getElementById("station_to"));
+    stationApp.dispStation();
+  }
+
+  /*
+  * 駅すぱーとWeb APIで経路検索
+  */
+  function ekispertSearch(station_from, stattion_to){
+    resultApp = new expGuiCourseLight();
+    var searchInterface = resultApp.createSearchInterface();
+    searchInterface.setFrom(station_from);
+    searchInterface.setTo(stattion_to);
+    searchInterface.setSearchType(resultApp.SEARCHTYPE_DEPARTURE);
+    searchInterface.setPlane(false);
+    searchInterface.setShinkansen(false);
+    searchInterface.setLimitedExpress(false);
+    searchInterface.setBus(false);
+    resultApp.search(searchInterface, ekispertResult);
+  }
+  /*
+  * 探索実行時のコールバック関する
+  */
+  function ekispertResult(isSuccess){
+    if(!isSuccess){
+      alert("検索できません");
+    }else{
+      location.href=resultApp.getResourceURI();
+    }
+  }
+  // -->
+  </script>
+</head>
+<body onLoad="Javascript:init();">
+  from
+  <div id="station_from">
+  </div>
+  to
+  <div id="station_to">
+  </div>
+  <button id="search">検索</button>
+</body>
+</html>
